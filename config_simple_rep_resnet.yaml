@@ -1,0 +1,37 @@
+model:
+#  type: SimpleRepRes
+  type: SimpleRepResAdc
+  strict: True
+  args:
+    {
+      param_list: [16, 2, 7]
+    }
+
+loss:
+#  type: BCELoss
+  type: CE_DiceLoss
+#  type: DiceBCELoss
+  args:
+    {}
+
+optimizer:
+  type: AdamW
+  args:
+    lr: 1e-4
+    weight_decay: 1e-5
+
+lr_scheduler:
+  type: CosineAnnealingLR
+  args:
+    T_max: 40
+
+epochs: 40
+save_dir: saved/
+val_per_epochs: 20
+save_period: 1
+threshold: 0.5
+threshold_low: 0.3
+DTI: false
+amp: false
+tta: false
+CCC: false
